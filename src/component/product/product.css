@@ -9,3 +9,14 @@
     color: blue;
     font-size: 400;
 }
+.product-details{
+    margin-left:20px;
+}
+.Button{
+    background-color: goldenrod;
+    width: 150px;
+    height: 30px;
+    border:1px black solid;
+    border-radius: 5px;
+    cursor: pointer;
+}
