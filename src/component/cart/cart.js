@@ -1,5 +1,8 @@
+
+// import { button } from 'bootstrap';
 import React from 'react';
-import Product from '../product/product';
+
+
 
 const Carts = (props) => {
     const cart=props.cart;
@@ -7,7 +10,8 @@ const Carts = (props) => {
     let total=0;
     for (let i = 0; i < cart.length; i++) {
         const product = cart[i];
-        total=total+product.price;
+        total=total+product.price*product.quantity;
+        debugger
         
     }
 
@@ -30,12 +34,16 @@ const formatNumber=num=>{
 
     return (
         <div>
-            <h2>Order Summary</h2>
-            <p>Item Order:{cart.length}</p>
-            <p>Total Price:{formatNumber(total)}</p>
-            <p><small>Shipping Coast:{shipping}</small></p>
-            <p>Total Price:{formatNumber(total+shipping+tax)}</p>
-            <p>Tax:{formatNumber(tax)}</p>
+            <h2 className="text-primary ">Order Summary</h2>
+            <h4>Item Order:{cart.length}</h4>
+            <h4>Total Price:{formatNumber(total)}</h4>
+            <h4>Shipping Coast:{shipping}</h4>
+            <h4>Total Price:{formatNumber(total+shipping+tax)}</h4>
+            <h5>Tax:{formatNumber(tax)}</h5>
+            {
+                props.children
+            }
+           
         </div>
     );
 };
