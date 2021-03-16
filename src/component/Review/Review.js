@@ -7,18 +7,17 @@ import happyImage from '../../images/giphy.gif'
 
 import Product from '../product/product';
 import ProductReview from '../ProductReview/ProductReview';
+import { useHistory } from 'react-router';
+import Shipment from '../Shipment/Shipment';
 
 const Review = () => {
 
 const [cart,setCart]=useState([]);
 const [oderplace,setOderPlace]=useState(false);
+const history = useHistory();
 
-         const handelPlaceOrder=()=>{
-             setCart([]);
-             setOderPlace(true);
-             processOrder();
-
-             console.log('order placed');
+         const handelProceedCheckout=()=>{
+             history.push('/Shipment')
          }
     
     const removeProduct = (ProductKey)=>{
@@ -64,8 +63,8 @@ const [oderplace,setOderPlace]=useState(false);
 
             <div className="cart-container">
                   <Carts cart={cart}>
-                      <button onClick={handelPlaceOrder} className="Button">
-                          place Order
+                      <button onClick={handelProceedCheckout} className="Button">
+                          Proceed  Checkout
                       </button>
                   </Carts>
            </div>
