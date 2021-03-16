@@ -3,6 +3,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from './Auth';
 import { UserContext} from '../../App'
+import { useHistory, useLocation } from 'react-router';
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -20,6 +21,9 @@ function Login() {
   });
   
   const [loggedInUser,setLoggedInUser]=useContext(UserContext);
+  const history=useHistory();
+  const location=useLocation();
+  const { from } = location.state || { from: { pathname: "/" } };
 
   const fbProvider = new firebase.auth.FacebookAuthProvider();
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -102,6 +106,7 @@ const fbHandle=()=>{
           newUserInfo.error = '';
           newUserInfo.success = true;
           setUser(newUserInfo);
+          
           console.log(res)
           updateUserName(user.name)
           
@@ -125,6 +130,7 @@ if(!newUser && user.email && user.password){
           setUser(newUserInfo);
           console.log(res)
           setLoggedInUser(newUserInfo)
+          history.replace(from);
           console.log('sing in user info',res.user);
 
   })
